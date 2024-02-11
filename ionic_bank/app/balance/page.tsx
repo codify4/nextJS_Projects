@@ -40,7 +40,7 @@ const page = () => {
                 
             </div>
 
-            {isDepositVisible && <Deposit deposit={handleDepositClose}/>}
+            {isDepositVisible && <Deposit deposit={handleDepositClose} depositedMoney={10}/>}
             {isWithdrawVisible && <Withdraw />}
         </main>
     )
