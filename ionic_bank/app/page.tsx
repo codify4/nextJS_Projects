@@ -1,11 +1,12 @@
 import React from 'react'
 import Image from 'next/image';
+import Link from 'next/link'
 
 import Button from './components/Button';
 
 const Home = () => {
   return (
-    <main className='flex items-start justify-center my-14 mx-14 w-9/12 h-[800px] bg-[#A9A9A9] rounded-xl'>
+    <main className='flex items-start justify-center my-14 mx-14 w-9/12 h-[800px] bg-[#ffffff] rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
       <section className='flex flex-col items-center justify-center'>
         <Image 
           src='/bankIonic_fv.png'
@@ -16,26 +17,25 @@ const Home = () => {
 
         <div className='flex flex-col items-center w-[200px] '>
           <h2 className='mt-4 mb-1 text-4xl font-bold'>
-            High <span className='bg-gradient-to-r from-[#0000CD] to-[#4D4DFF] text-transparent bg-clip-text'>Tech</span>
+            High <span className='bg-gradient-to-r from-[#4D4DFF] to-[#0000CD] text-transparent bg-clip-text'>Tech</span>
           </h2>
           <h2 className='mb-3 text-4xl font-bold'>
-             High <span className='bg-gradient-to-r from-[#0000CD] to-[#4D4DFF] text-transparent bg-clip-text'>Safety</span>
+             High <span className='bg-gradient-to-r from-[#4D4DFF] to-[#0000CD] text-transparent bg-clip-text'>Safety</span>
           </h2>
         </div>
 
-        <Button text="Join Us"/>
+        <Link href="/balance">
+          <Button text="Join Us"/>
+        </Link>
 
-        <div className='flex flex-col items-center text-3xl font-bold'>
-          <span className='bg-gradient-to-r from-[#0000CD] to-[#4D4DFF] text-transparent bg-clip-text'>Deposit</span> 
-          and 
-          <span className='bg-gradient-to-r from-[#0000CD] to-[#4D4DFF] text-transparent bg-clip-text'>Withdraw</span>
-          instantly with 
-          <span className='bg-gradient-to-r from-[#0000CD] to-[#4D4DFF] text-transparent bg-clip-text'>no comission!</span>
+        <div className='flex flex-col absolute bottom-[360px] left-auto items-center text-3xl font-bold '>
+          <div>
+            <span className='bg-gradient-to-r from-[#4D4DFF] to-[#0000CD] text-transparent bg-clip-text '>Deposit </span> 
+            and <span className='bg-gradient-to-r from-[#4D4DFF] to-[#0000CD] text-transparent bg-clip-text'>Withdraw</span>
+          </div>
+          Instantly...
         </div>
       </section>
-
-      
-      
     </main>
   );
 }
