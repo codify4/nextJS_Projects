@@ -1,4 +1,5 @@
 "use client"
+
 import React, { useState } from 'react';
 
 import Button from '../../app/components/Button';
@@ -27,18 +28,16 @@ const page = () => {
         setIsWithdrawVisible(false);
     }
 
-    const handleDepositedMoneyChange = (value: number) => {
+    const handleDepositedMoneyChange = (value?: number) => {
         // Update the balance by adding the deposited money
-        setBalance((b) => b + value);
+        setBalance((b) => b + (value ?? 0));
         handleDepositClose();
-    };
-
-    const handleWithdrawnMoneyChange = (value: number) => {
+    }
+    const handleWithdrawnMoneyChange = (value?: number) => {
         // Update the balance by subtracting the withdrawn money
-        setBalance((b) => b - value);
+        setBalance((b) => b - (value ?? 0));
         handleWithdrawClose();
-    };
-
+    }
 
     return (
         <main className='flex flex-col items-center justify-center my-14 mx-14 w-9/12 h-[800px] bg-[#ffffff] rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
@@ -54,11 +53,8 @@ const page = () => {
             </h1>
 
             <div className='flex'>
-                
                 <Button text='Deposit' onClick={handleDepositClick}/>
-
                 <Button text='Withdraw' onClick={handleWithdrawClick}/>
-                
             </div>
             
             {/*Check if the booleans are true to show Card Component to the screen */}

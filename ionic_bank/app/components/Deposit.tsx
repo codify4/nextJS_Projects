@@ -9,11 +9,14 @@ type DepositProps = {
 
 const Deposit = ({ closeDeposit }: DepositProps) => {
   
-  const [deposit, setDeposit] = useState<number>(0);
+  const [deposit, setDeposit] = useState<string>('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = Number(e.target.value);
-    setDeposit(inputValue);
+    const inputValue = e.target.value;
+
+    // Remove leading zeros and convert to number
+    const numericValue = inputValue.replace(/^0+/, '');
+    setDeposit(numericValue);
   }
   
   return (
@@ -28,7 +31,7 @@ const Deposit = ({ closeDeposit }: DepositProps) => {
             />
 
         <button className='bg-none border-2 border-black text-3xl text-black py-1 px-10 rounded-xl m-5 transition-transform transform  hover:-translate-y-2 hover:bg-gradient-to-r from-[#000080] to-[#0000CD] hover:border-none hover:text-white'
-        onClick={() => closeDeposit(deposit)}
+        onClick={() => closeDeposit(Number(deposit))}
         >
             Deposit
         </button>
