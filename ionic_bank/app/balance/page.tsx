@@ -11,10 +11,15 @@ const page = () => {
 
     const [isDepositVisible, setIsDepositVisible] = useState(false);
     const [isWithdrawVisible, setIsWithdrawVisible] = useState(false);
+    const [isCurrencyChosen, setIsCurrencyChosen] = useState(true);
+    
 
     const [balance, setBalance] = useState(0);
     
     // Click state for deposit/ withdraw card components
+    const handleCurrencyPickerDisplay = () => {
+        setIsCurrencyChosen(true);
+    }
     const handleDepositClick = () => {
         setIsDepositVisible(true);
     }
@@ -42,7 +47,13 @@ const page = () => {
     return (
         <main className='flex flex-col items-center justify-center my-14 mx-14 w-9/12 h-[800px] bg-[#ffffff] rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
             
-            {<Currency />}
+            <Currency />
+            {/*
+                <div onChange={handleCurrencyPickerDisplay}> 
+                    {isCurrencyChosen === false ? <Currency /> : <></>}
+                </div>
+            */}
+
 
             {/*Transparent BG */}
             {(isDepositVisible || isWithdrawVisible) && (

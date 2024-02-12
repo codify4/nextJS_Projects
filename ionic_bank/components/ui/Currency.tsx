@@ -20,29 +20,29 @@ import {
 
 type CurrencyProps = {
     currency?: string;
+    chooseCurrency?: () => void;
 }
 
-const Currency = (currency: CurrencyProps) => {
+const Currency = ({currency, chooseCurrency}: CurrencyProps) => {
     return (
-        <Card className=''>
+        <Card className='flex flex-col items-center justify-center fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] z-50 bg-white p-8 rounded-md shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
             <CardHeader>
-                <CardTitle>Card Title</CardTitle>
-                <CardDescription>Card Description</CardDescription>
+                <CardTitle>Choose Your Currency</CardTitle>
             </CardHeader>
             <CardContent>
                 <Select>
-                    <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Theme" />
+                    <SelectTrigger className="w-[200px]">
+                        <SelectValue placeholder="Currency" />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="light">Light</SelectItem>
-                        <SelectItem value="dark">Dark</SelectItem>
-                        <SelectItem value="system">System</SelectItem>
+                        <SelectItem value="lek">Albanan Lek</SelectItem>
+                        <SelectItem value="usd">USD</SelectItem>
+                        <SelectItem value="euro">Euro</SelectItem>
                     </SelectContent>
                 </Select>
             </CardContent>
             <CardFooter>
-                <p>Card Footer</p>
+                <button className='text-xl text-black'>Proceed</button>
             </CardFooter>
         </Card>
     )
