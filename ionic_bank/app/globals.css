@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.placeholder-text::placeholder {
+    @apply text-start justify-center text-2xl
+}
