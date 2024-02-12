@@ -2,9 +2,10 @@
 
 import React, { useState } from 'react';
 
-import Button from '../../app/components/Button';
-import Deposit from '../components/Deposit';
-import Withdraw from '../components/Withdraw';
+import Button from '../../components/ui/Button';
+import Deposit from '../../components/ui/Deposit';
+import Withdraw from '../../components/ui/Withdraw';
+import Currency from '../../components/ui/Currency';
 
 const page = () => {
 
@@ -12,7 +13,6 @@ const page = () => {
     const [isWithdrawVisible, setIsWithdrawVisible] = useState(false);
 
     const [balance, setBalance] = useState(0);
-    
     
     // Click state for deposit/ withdraw card components
     const handleDepositClick = () => {
@@ -42,6 +42,8 @@ const page = () => {
     return (
         <main className='flex flex-col items-center justify-center my-14 mx-14 w-9/12 h-[800px] bg-[#ffffff] rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
             
+            {<Currency />}
+
             {/*Transparent BG */}
             {(isDepositVisible || isWithdrawVisible) && (
                 <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-60 z-"></div>
