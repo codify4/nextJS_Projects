@@ -11,8 +11,6 @@ const page = () => {
     const [isWithdrawVisible, setIsWithdrawVisible] = useState(false);
 
     const [balance, setBalance] = useState(0);
-    const [depositedMoney, setDepositedMoney] = useState(0);
-    const [withdrawnMoney, setWithdrawnMoney] = useState(0);
     
     
     // Click state for deposit/ withdraw card components
@@ -30,16 +28,14 @@ const page = () => {
     }
 
     const handleDepositedMoneyChange = (value: number) => {
-        setDepositedMoney(value);
         // Update the balance by adding the deposited money
         setBalance((b) => b + value);
         handleDepositClose();
     };
 
     const handleWithdrawnMoneyChange = (value: number) => {
-        setWithdrawnMoney(value);
-        // Update the balance by adding the deposited money
-        setBalance((b) => b + value);
+        // Update the balance by subtracting the withdrawn money
+        setBalance((b) => b - value);
         handleWithdrawClose();
     };
 

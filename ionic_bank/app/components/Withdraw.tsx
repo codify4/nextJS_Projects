@@ -8,7 +8,7 @@ type WithdrawProps = {
 
 const Withdraw = ({ closeWithdraw }: WithdrawProps) => {
 
-  const [withdraw, setWithdraw] = useState<number>();
+  const [withdraw, setWithdraw] = useState<number>(0);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = Number(e.target.value);
@@ -22,6 +22,7 @@ const Withdraw = ({ closeWithdraw }: WithdrawProps) => {
             type="number" 
             placeholder='Withdraw some money...' 
             value={withdraw}
+            onChange={handleInputChange}
             className='m-2 p-2 rounded-md appearance-none border-2 border-[#A9A9A9] text-3xl placeholder-text'
             
             />

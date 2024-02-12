@@ -9,7 +9,7 @@ type DepositProps = {
 
 const Deposit = ({ closeDeposit }: DepositProps) => {
   
-  const [deposit, setDeposit] = useState<number>();
+  const [deposit, setDeposit] = useState<number>(0);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = Number(e.target.value);
