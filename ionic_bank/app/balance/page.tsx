@@ -57,7 +57,8 @@ const page = () => {
 
             <h1 className='flex flex-col text-center mt-[-100px] mb-[30px] text-7xl font-bold bg-gradient-to-r from-[#4D4DFF] vie-[#0000CD] to-[#00006B] text-transparent bg-clip-text' onChange={() => {setBalance}}>
                 <span className='text-[80px]'>BALANCE</span>
-                {`${currency} ${balance}`}
+                {currency === 'Lek' ? 
+                `${balance} ${currency} ` : `${currency} ${balance}`}
             </h1>
 
             <div className='flex'>

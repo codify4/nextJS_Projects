@@ -29,15 +29,12 @@ const Currency = ({ onCurrencyChange }: CurrencyProps) => {
         onCurrencyChange(currency);
     }
     return (
-        <div className="fixed top-12 left-14 sm:left-32 md:left-24 lg:left-32 xl:left-60 z-50 bg-none border-2 border-black text-xl text-black py-1 px-10 rounded-xl m-5 hover:bg-gradient-to-r hover:from-[#000080] hover:to-[#0000CD] hover:border-none hover:text-white">
+        <div className="fixed top-14 z-50 bg-none text-3xl text-black font-bold py-1 px-10 rounded-xl m-5 hover:bg-gradient-to-r hover:from-[#000080] hover:to-[#0000CD] hover:text-transparent bg-clip-text hover:border-none hover:text-white">
             <Dialog>
                 <DialogTrigger>Currency</DialogTrigger>
-                <DialogContent>
+                <DialogContent className='flex flex-col items-center justify-center text-4xl'>
                     <DialogHeader>
-                        <DialogTitle>Pick a Currency</DialogTitle>
-                        <DialogDescription>
-                            Choose a currency to your liking: 
-                        </DialogDescription>
+                        <DialogTitle className='text-2xl'>Choose a currency to your liking:</DialogTitle>
                     </DialogHeader>
                     <div>
                         <Select value={value} onValueChange={handleCurrencyChange}>
@@ -47,9 +44,9 @@ const Currency = ({ onCurrencyChange }: CurrencyProps) => {
                                 </SelectValue>
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="Lek">ALL</SelectItem>
-                                <SelectItem value="$">USD</SelectItem>
-                                <SelectItem value="€">Euro</SelectItem>
+                                <SelectItem value="Lek">Lek</SelectItem>
+                                <SelectItem value="$">$</SelectItem>
+                                <SelectItem value="€">€</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
