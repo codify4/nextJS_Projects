@@ -11,9 +11,10 @@ const page = () => {
 
     const [isDepositVisible, setIsDepositVisible] = useState(false);
     const [isWithdrawVisible, setIsWithdrawVisible] = useState(false);
-    
+
     const [balance, setBalance] = useState(0);
-    
+    const [currency, setCurrency] = useState('');
+
     // Click state for deposit/ withdraw card components
     const handleDepositClick = () => {
         setIsDepositVisible(true);
@@ -27,31 +28,36 @@ const page = () => {
     const handleWithdrawClose = () => {
         setIsWithdrawVisible(false);
     }
-
+    // Update the balance by adding the deposited money
     const handleDepositedMoneyChange = (value?: number) => {
-        // Update the balance by adding the deposited money
         setBalance((b) => b + (value ?? 0));
         handleDepositClose();
     }
+     // Update the balance by subtracting the withdrawn money
     const handleWithdrawnMoneyChange = (value?: number) => {
-        // Update the balance by subtracting the withdrawn money
         setBalance((b) => b - (value ?? 0));
         handleWithdrawClose();
+    }
+
+    const handleCurrencyChange = (currency: string) => {
+        setCurrency(currency);
     }
 
     return (
         <main className='flex flex-col items-center justify-center my-14 mx-14 w-9/12 h-[800px] bg-[#ffffff] rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
             
-            <Currency />
+            <Currency
+                onCurrencyChange={handleCurrencyChange}
+            />
 
             {/*Transparent BG */}
             {(isDepositVisible || isWithdrawVisible) && (
                 <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-60 z-"></div>
             )}
 
-            <h1 className='flex flex-col text-center mt-[-100px] mb-[30px] text-8xl font-bold bg-gradient-to-r from-[#4D4DFF] vie-[#0000CD] to-[#00006B] text-transparent bg-clip-text' onChange={() => {setBalance}}>
-                <span>BALANCE</span>
-                ${balance}
+            <h1 className='flex flex-col text-center mt-[-100px] mb-[30px] text-7xl font-bold bg-gradient-to-r from-[#4D4DFF] vie-[#0000CD] to-[#00006B] text-transparent bg-clip-text' onChange={() => {setBalance}}>
+                <span className='text-[80px]'>BALANCE</span>
+                {`${currency} ${balance}`}
             </h1>
 
             <div className='flex'>
