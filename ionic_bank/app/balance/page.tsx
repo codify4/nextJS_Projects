@@ -10,7 +10,7 @@ import Currency from '../../components/Currency';
 const page = () => {
 
     const [isDepositVisible, setIsDepositVisible] = useState(false);
-    const [isWithdrawVisible, setIsWithdrawVisible] = useState(false);
+    const [isWithdrawVisible, setIsWithdrawVisible] = useState(false);    
 
     const [balance, setBalance] = useState(0);
     const [currency, setCurrency] = useState('');
@@ -28,6 +28,7 @@ const page = () => {
     const handleWithdrawClose = () => {
         setIsWithdrawVisible(false);
     }
+
     // Update the balance by adding the deposited money
     const handleDepositedMoneyChange = (value?: number) => {
         setBalance((b) => b + (value ?? 0));
