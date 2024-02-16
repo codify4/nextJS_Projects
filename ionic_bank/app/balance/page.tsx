@@ -9,14 +9,16 @@ import Currency from '../../components/Currency';
 
 const page = () => {
 
-    const storedBalance = parseInt(localStorage.getItem('balance') || '0', 10);
-    const storedCurrency = localStorage.getItem('currency') || '';
 
     const [isDepositVisible, setIsDepositVisible] = useState(false);
     const [isWithdrawVisible, setIsWithdrawVisible] = useState(false);    
 
-    const [balance, setBalance] = useState(storedBalance);
-    const [currency, setCurrency] = useState<string>(storedCurrency);
+    const [balance, setBalance] = useState(() => {
+        return parseInt(localStorage.getItem('balance') || '0', 10);
+    });
+    const [currency, setCurrency] = useState<string>(() => {
+        return localStorage.getItem('currency') || '';
+    });
 
     useEffect(() => {
         localStorage.setItem('currency', currency);
