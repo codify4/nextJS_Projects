@@ -10,15 +10,18 @@ import Currency from '../../components/Currency';
 const page = () => {
 
     const storedBalance = parseInt(localStorage.getItem('balance') || '0', 10);
+    const storedCurrency = localStorage.getItem('currency') || '';
+
     const [isDepositVisible, setIsDepositVisible] = useState(false);
     const [isWithdrawVisible, setIsWithdrawVisible] = useState(false);    
 
     const [balance, setBalance] = useState(storedBalance);
-    const [currency, setCurrency] = useState('');
+    const [currency, setCurrency] = useState<string>(storedCurrency);
 
     useEffect(() => {
+        localStorage.setItem('currency', currency);
         localStorage.setItem('balance', JSON.stringify(balance));
-    }, [balance])
+    }, [balance, currency])
 
     // Click state for deposit/ withdraw card components
     const handleDepositClick = () => {
