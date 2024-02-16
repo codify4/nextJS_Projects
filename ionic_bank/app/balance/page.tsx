@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Button from '../../components/Button';
 import Deposit from '../../components/Deposit';
@@ -9,11 +9,16 @@ import Currency from '../../components/Currency';
 
 const page = () => {
 
+    const storedBalance = parseInt(localStorage.getItem('balance') || '0', 10);
     const [isDepositVisible, setIsDepositVisible] = useState(false);
     const [isWithdrawVisible, setIsWithdrawVisible] = useState(false);    
 
-    const [balance, setBalance] = useState(0);
+    const [balance, setBalance] = useState(storedBalance);
     const [currency, setCurrency] = useState('');
+
+    useEffect(() => {
+        localStorage.setItem('balance', JSON.stringify(balance));
+    }, [balance])
 
     // Click state for deposit/ withdraw card components
     const handleDepositClick = () => {

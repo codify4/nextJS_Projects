@@ -29,7 +29,7 @@ const Currency = ({ onCurrencyChange }: CurrencyProps) => {
         onCurrencyChange(currency);
     }
     return (
-        <div className="fixed top-14 z-50 bg-none text-3xl text-black font-bold py-1 px-10 rounded-xl m-5 hover:bg-gradient-to-r hover:from-[#000080] hover:to-[#0000CD] hover:text-transparent bg-clip-text hover:border-none hover:text-white">
+        <div className="fixed top-14 z-50 bg-none text-3xl text-black font-bold py-1 px-10 rounded-xl m-5 hover:bg-gradient-to-r hover:from-[#000080] hover:to-[#0000CD] hover:text-transparent bg-clip-text hover:border-none">
             <Dialog>
                 <DialogTrigger>Currency</DialogTrigger>
                 <DialogContent className='flex flex-col items-center justify-center text-4xl'>
