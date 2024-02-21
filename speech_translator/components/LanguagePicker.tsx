@@ -1,34 +1,62 @@
-import React from 'react'
+"use client"
+
+import React, { useState } from 'react'
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuLabel,
+    DropdownMenuRadioGroup,
+    DropdownMenuRadioItem,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
-import Button from './Button';
 
 type LanguagePickerProps = {
     name: string;
-    fromLang?: string;
-    toLang?: string;
+    onLangChange?: (lang: string) => void;
 }
 
-const LanguagePicker = ({ name, fromLang, toLang }: LanguagePickerProps) => {
+const LanguagePicker = ({ name, onLangChange }: LanguagePickerProps) => {
+
+  const [value, setValue] = useState('');
+  
+  const handleLangChange = (lang: string) => {
+    setValue(lang);
+    onLangChange(lang);
+  }
   return (
     <div>
-        <DropdownMenu>
-            <DropdownMenuTrigger className='mx-6 my-5 px-5 py-4 text-center w-[100px] bg-neutral-700 rounded-[10px] text-white active:'>
-                <Button name={name}/>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className='bg-neutral-700 text-white rounded-[10px]'>
-                <DropdownMenuLabel>Language</DropdownMenuLabel>
-                <DropdownMenuItem className='rounded'>English</DropdownMenuItem>
-                <DropdownMenuItem className='rounded'>German</DropdownMenuItem>
-                <DropdownMenuItem className='rounded'>Albanian</DropdownMenuItem>
-                <DropdownMenuItem className='rounded'>Russian</DropdownMenuItem>
-            </DropdownMenuContent>
+        <DropdownMenu >
+            {
+              name === 'From' ? (
+                <DropdownMenuTrigger className='mx-6 my-5 px-5 py-4 text-center w-[100px] rounded-[10px] text-white bg-[#FF002B]'>
+                  {name}
+                </DropdownMenuTrigger>
+              ): (
+                <DropdownMenuTrigger className='mx-6 my-5 px-5 py-4 text-center w-[100px] rounded-[10px] text-white bg-[#0086D1]'>
+                  {name}
+                </DropdownMenuTrigger>
+              )
+            }
+            {name === 'From' ? (
+                <DropdownMenuContent className='bg-[#FF002B] text-white rounded-[10px]'>
+                  <DropdownMenuRadioGroup value={value} onValueChange={handleLangChange}>
+                    <DropdownMenuRadioItem value="top" className='rounded-[5px]'>Top</DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="bottom" className='rounded-[7px]'>Bottom</DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="right" className='rounded-[7px]'>Right</DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              ): (
+                <DropdownMenuContent className='bg-[#0086D1] text-white rounded-[10px]'>
+                          <DropdownMenuRadioGroup value={value} onValueChange={handleLangChange}>
+                            <DropdownMenuRadioItem value="top" className='rounded-[7px]'>Top</DropdownMenuRadioItem>
+                            <DropdownMenuRadioItem value="bottom" className='rounded-[7px]'>Bottom</DropdownMenuRadioItem>
+                            <DropdownMenuRadioItem value="right" className='rounded-[7px]'>Right</DropdownMenuRadioItem>
+                          </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              )
+            }
         </DropdownMenu>
 
     </div>
