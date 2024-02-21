@@ -1,38 +1,37 @@
 import React from 'react'
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-  } from "@/components/ui/select"
-  
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+  } from "@/components/ui/dropdown-menu"
+import Button from './Button';
 
-const LanguagePicker = () => {
+type LanguagePickerProps = {
+    name: string;
+    fromLang?: string;
+    toLang?: string;
+}
+
+const LanguagePicker = ({ name, fromLang, toLang }: LanguagePickerProps) => {
   return (
     <div>
-        <Select>
-            <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Theme" />
-            </SelectTrigger>
-            <SelectContent>
-                <SelectItem value="light">Light</SelectItem>
-                <SelectItem value="dark">Dark</SelectItem>
-                <SelectItem value="system">System</SelectItem>
-            </SelectContent>
-        </Select>
-        
-        <Select>
-            <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Theme" />
-            </SelectTrigger>
-            <SelectContent>
-                <SelectItem value="light">Light</SelectItem>
-                <SelectItem value="dark">Dark</SelectItem>
-                <SelectItem value="system">System</SelectItem>
-            </SelectContent>
-        </Select>
-  </div>
+        <DropdownMenu>
+            <DropdownMenuTrigger className='mx-6 my-5 px-5 py-4 text-center w-[100px] bg-neutral-700 rounded-[10px] text-white active:'>
+                <Button name={name}/>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className='bg-neutral-700 text-white rounded-[10px]'>
+                <DropdownMenuLabel>Language</DropdownMenuLabel>
+                <DropdownMenuItem className='rounded'>English</DropdownMenuItem>
+                <DropdownMenuItem className='rounded'>German</DropdownMenuItem>
+                <DropdownMenuItem className='rounded'>Albanian</DropdownMenuItem>
+                <DropdownMenuItem className='rounded'>Russian</DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
+
+    </div>
   )
 }
 
