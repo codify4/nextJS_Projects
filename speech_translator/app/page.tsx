@@ -1,10 +1,9 @@
 
-
 import React from 'react'
 import LanguagePicker from '@/components/LanguagePicker'
 
 const Home = () => {
-
+//TODO: translation config
   return (
     
     <main className='flex flex-col items-center'>

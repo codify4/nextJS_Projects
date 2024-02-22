@@ -20,7 +20,7 @@ type LanguagePickerProps = {
 }
 
 const LanguagePicker = ({ name, onLangSelect }: LanguagePickerProps) => {
-
+// TODO: language state update and display on the trigger
   const [lang, setLang] = useState('');
   
   const handleLangChange = (language: string) => {
