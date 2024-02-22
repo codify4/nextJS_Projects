@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -12,18 +12,19 @@ import {
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
 
+import { langs } from '../lib/utils.ts';
+
 type LanguagePickerProps = {
     name: string;
-    onLangChange?: (lang: string) => void;
+    onLangSelect?: (lang: string) => void;
 }
 
-const LanguagePicker = ({ name, onLangChange }: LanguagePickerProps) => {
+const LanguagePicker = ({ name, onLangSelect }: LanguagePickerProps) => {
 
-  const [value, setValue] = useState('');
+  const [lang, setLang] = useState('');
   
-  const handleLangChange = (lang: string) => {
-    setValue(lang);
-    onLangChange(lang);
+  const handleLangChange = (language: string) => {
+    setLang(language);
   }
   return (
     <div>
@@ -40,25 +41,25 @@ const LanguagePicker = ({ name, onLangChange }: LanguagePickerProps) => {
               )
             }
             {name === 'From' ? (
-                <DropdownMenuContent className='bg-[#FF002B] text-white rounded-[10px]'>
-                  <DropdownMenuRadioGroup value={value} onValueChange={handleLangChange}>
-                    <DropdownMenuRadioItem value="top" className='rounded-[5px]'>Top</DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="bottom" className='rounded-[7px]'>Bottom</DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="right" className='rounded-[7px]'>Right</DropdownMenuRadioItem>
+                <DropdownMenuContent className='bg-[#FF002B] text-white rounded-[10px] overflow-y-auto max-h-[300px] scrollbar-hide'>
+                  <DropdownMenuRadioGroup value={lang} onValueChange={handleLangChange}>
+                    {Object.entries(langs).map(([code, language]) => (
+                      <DropdownMenuRadioItem key={code} value={language} className='rounded-[5px]'>{language}</DropdownMenuRadioItem>
+                    ))}
                   </DropdownMenuRadioGroup>
                 </DropdownMenuContent>
               ): (
-                <DropdownMenuContent className='bg-[#0086D1] text-white rounded-[10px]'>
-                          <DropdownMenuRadioGroup value={value} onValueChange={handleLangChange}>
-                            <DropdownMenuRadioItem value="top" className='rounded-[7px]'>Top</DropdownMenuRadioItem>
-                            <DropdownMenuRadioItem value="bottom" className='rounded-[7px]'>Bottom</DropdownMenuRadioItem>
-                            <DropdownMenuRadioItem value="right" className='rounded-[7px]'>Right</DropdownMenuRadioItem>
-                          </DropdownMenuRadioGroup>
+                <DropdownMenuContent className='bg-[#0086D1] text-white rounded-[10px] overflow-y-auto max-h-[300px] scrollbar-hide'>
+                  <DropdownMenuRadioGroup value={lang} onValueChange={handleLangChange}>
+                    {Object.entries(langs).map(([code, language]) => (
+                      <DropdownMenuRadioItem key={code} value={language} className='rounded-[5px]'>{language}</DropdownMenuRadioItem>
+                    ))}
+                  </DropdownMenuRadioGroup>
                 </DropdownMenuContent>
               )
             }
         </DropdownMenu>
-
+          {lang}
     </div>
   )
 }

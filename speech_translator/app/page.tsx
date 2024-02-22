@@ -1,7 +1,10 @@
-import LanguagePicker from '@/components/LanguagePicker'
+
+
 import React from 'react'
+import LanguagePicker from '@/components/LanguagePicker'
 
 const Home = () => {
+
   return (
     
     <main className='flex flex-col items-center'>
@@ -14,6 +17,7 @@ const Home = () => {
         <LanguagePicker name='From' />
         <LanguagePicker name='To' />
       </div>
+
     </main>
   )
 }
