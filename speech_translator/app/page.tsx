@@ -1,6 +1,5 @@
-
 import React from 'react'
-import LanguagePicker from '@/components/LanguagePicker'
+import Translate from '@/components/Translate'
 
 const Home = () => {
   return (
@@ -12,10 +11,7 @@ const Home = () => {
       </h1>
       
       {/* Take this to translate component */}
-      <div className='inline-flex items-center justify-center mt-5 w-[500px] bg-neutral-800 rounded-xl'>
-        <LanguagePicker name='From' />
-        <LanguagePicker name='To' />
-      </div>
+      <Translate />
 
     </main>
   )
