@@ -1,6 +1,7 @@
 'use client'
 import { useState } from "react";
 import LanguagePicker from "./LanguagePicker";
+import translate from "google-translate-api";
 
 
 const Translate = () => {
@@ -11,7 +12,7 @@ const Translate = () => {
                 <LanguagePicker name='To' />
             </div>
 
-            
+
         </div>
     );
 }
