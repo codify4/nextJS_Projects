@@ -1,31 +1,45 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+
 import {
     DropdownMenu,
     DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
     DropdownMenuRadioGroup,
     DropdownMenuRadioItem,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
+  } from "@/components/ui/dropdown-menu";
 
 import { langs } from '../lib/utils.ts';
 
 type LanguagePickerProps = {
     name: string;
-    onLangSelect?: (lang: string) => void;
+    onLangSelect?: (lang: string, name: string) => void;
 }
 
 const LanguagePicker = ({ name, onLangSelect }: LanguagePickerProps) => {
 // TODO: language state update and display on the trigger
-  const [lang, setLang] = useState('');
+  const [fromLang, setFromLang] = useState('');
+  const [toLang, setToLang] = useState('');
+  
   
   const handleLangChange = (language: string) => {
-    setLang(language);
+    if(name === "From") {
+      setFromLang(language);
+      if(onLangSelect) {
+        onLangSelect(language, "From");
+      }
+    }
+    else if(name === "To") {
+      setToLang(language);
+      if(onLangSelect) {
+        onLangSelect(language, "To");
+      }
+    }
   }
+
+  const lang = name === "From" ? fromLang : toLang;
+  
   return (
     <div>
         <DropdownMenu>
