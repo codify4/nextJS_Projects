@@ -14,29 +14,29 @@ import { langs } from '../lib/utils.ts';
 
 type LanguagePickerProps = {
     name: string;
-    onLangSelect?: (lang: string, name: string) => void;
+    onLangSelect: (code: string, name: string) => void;
 }
 
 const LanguagePicker = ({ name, onLangSelect }: LanguagePickerProps) => {
   
   const [fromLang, setFromLang] = useState('');
   const [toLang, setToLang] = useState('');
+
+  const [langCode, setLangCode] = useState('');
+  
   
   
   const handleLangChange = (language: string) => {
     if(name === "From") {
       setFromLang(language);
-      if(onLangSelect) {
-        onLangSelect(language, "From");
-      }
     }
     else if(name === "To") {
       setToLang(language);
-      if(onLangSelect) {
-        onLangSelect(language, "To");
-      }
     }
+
+    const code = Object.keys(langs).find(key => langs[key] === language);
   }
+
 
   const lang = name === "From" ? fromLang : toLang;
   
@@ -49,9 +49,9 @@ const LanguagePicker = ({ name, onLangSelect }: LanguagePickerProps) => {
           </DropdownMenuTrigger>
 
           <DropdownMenuContent className={`text-white rounded-[10px] overflow-y-auto max-h-[300px] scrollbar-hide ${name === 'From' ? 'bg-[#FF002B]' : 'bg-[#0086D1]'}`}>
-            <DropdownMenuRadioGroup value={lang} onValueChange={handleLangChange}>
+            <DropdownMenuRadioGroup value={lang} onValueChange={handleCodeChange}>
               {Object.entries(langs).map(([code, language]) => (
-                <DropdownMenuRadioItem key={code} value={language} className='rounded-[5px]'>{language}</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem key={code} value={code} className='rounded-[5px]'>{language}</DropdownMenuRadioItem>
               ))}
             </DropdownMenuRadioGroup>
           </DropdownMenuContent> 
