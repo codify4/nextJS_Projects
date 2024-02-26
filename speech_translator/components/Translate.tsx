@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 import LanguagePicker from "./LanguagePicker";
-import { Translator } from 'google-translate-api-x';
+import translate from 'google-translate-api-x';
 
 // translate library use the states in the translate()
 
@@ -20,8 +20,7 @@ const Translate = () => {
 
     const tranlateText = async () => {
         try {
-            const translator = new Translator({ from: fromLang, to: toLang, forceBatch: true, tld: 'en'});
-            const translatedText = await translator.translate('how you doing');
+            const translatedText = await translate('how you doing', { from: fromLang, to: toLang, forceBatch: true, tld: 'es' });
             setTranslation(translatedText.text);
         } catch (error) {
             console.error("Translation Error: ", error);
