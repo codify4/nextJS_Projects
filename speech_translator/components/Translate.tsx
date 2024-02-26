@@ -1,28 +1,42 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import LanguagePicker from "./LanguagePicker";
-import translate from "google-translate-api";
+import { Translator } from 'google-translate-api-x';
 
-// lang picker 2 lang states props??
 // translate library use the states in the translate()
-
 
 const Translate = () => {
 
     const [fromLang, setFromLang] = useState('');
     const [toLang, setToLang] = useState('');
+    const [translation, setTranslation] = useState('');
+    
+    useEffect(() => {
+        if(fromLang && toLang) {
+            tranlateText();
+        }
+    }, [fromLang, toLang])
 
-    const handleLangSelect = (lang: string, name: string) => {
+    const tranlateText = async () => {
+        try {
+            const translator = new Translator({ from: fromLang, to: toLang, forceBatch: true, tld: 'en'});
+            const translatedText = await translator.translate('how you doing');
+            setTranslation(translatedText.text);
+        } catch (error) {
+            console.error("Translation Error: ", error);
+        }
+    }
+
+    const handleLangSelect = (code: string, name: string) => {
         if(name === "From") {
-            setFromLang(lang);
+            setFromLang(code);
           }
           else if(name === "To") {
-            setToLang(lang);
+            setToLang(code);
           }
     }
 
-    
     return (
          <div className="flex flex-col items-center">
 
@@ -37,7 +51,7 @@ const Translate = () => {
                         how you doing
                     </div>
                     <div className="flex w-[360px] h-[280px] p-4 rounded-[15px] bg-neutral-700 text-white">
-                        shka bane e la
+                        {translation}
                     </div>
                 </div>
             </div>

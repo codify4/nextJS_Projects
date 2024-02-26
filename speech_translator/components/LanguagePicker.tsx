@@ -16,7 +16,7 @@ type LanguagePickerProps = {
     name: string;
     onLangSelect: (code: string, name: string) => void;
 }
-
+//TODO: fix pass code to Translate.tsx
 const LanguagePicker = ({ name, onLangSelect }: LanguagePickerProps) => {
   
   const [fromLang, setFromLang] = useState('');
@@ -34,7 +34,13 @@ const LanguagePicker = ({ name, onLangSelect }: LanguagePickerProps) => {
       setToLang(language);
     }
 
-    const code = Object.keys(langs).find(key => langs[key] === language);
+    const code = Object.keys(langs).find((key) => {
+      return langs[key as keyof typeof langs] === language;
+    }) as keyof typeof langs;
+    
+    if(onLangSelect && code) {
+      onLangSelect(code, name);
+    }
   }
 
 
@@ -49,9 +55,9 @@ const LanguagePicker = ({ name, onLangSelect }: LanguagePickerProps) => {
           </DropdownMenuTrigger>
 
           <DropdownMenuContent className={`text-white rounded-[10px] overflow-y-auto max-h-[300px] scrollbar-hide ${name === 'From' ? 'bg-[#FF002B]' : 'bg-[#0086D1]'}`}>
-            <DropdownMenuRadioGroup value={lang} onValueChange={handleCodeChange}>
+            <DropdownMenuRadioGroup value={lang} onValueChange={handleLangChange}>
               {Object.entries(langs).map(([code, language]) => (
-                <DropdownMenuRadioItem key={code} value={code} className='rounded-[5px]'>{language}</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem key={code} value={language} className='rounded-[5px]'>{language}</DropdownMenuRadioItem>
               ))}
             </DropdownMenuRadioGroup>
           </DropdownMenuContent> 
