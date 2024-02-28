@@ -1,11 +1,10 @@
 import React from 'react'
 type ButtonProps = {
     name: string;
-    variant?: string;
 }
-const Button = ({ name, variant }: ButtonProps) => {
+const Button = ({ name }: ButtonProps) => {
     return (
-        <button className='hover:bg-gradient-to-r from-red-500 to-blue-500 text-white'>{name}</button>
+        <button className='hover:bg-gradient-to-r from-[#FF002B] to-[#0086D1] text-white'>{name}</button>
     )
 }
 
