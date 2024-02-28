@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import SpeakButton from '@/components/SpeakButton';
+import SpeakButton from '@/components/SpeakRecognition';
 
 
 const Home = () => {

@@ -1,13 +1,19 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import 'regenerator-runtime/runtime';
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 import { Mic } from 'lucide-react';
 
-const SpeakButton = () => {
+import OldTranscript from './OldTranscript';
 
+const SpeakRecognition = () => {
+
+    const [transcriptHistory, setTranscriptHistory] = useState(['']);
+    const [showTranscriptHistory, setShowTranscriptHistory] = useState(false);
+    
     const {
         transcript,
         listening,
@@ -15,19 +21,21 @@ const SpeakButton = () => {
         browserSupportsSpeechRecognition
     } = useSpeechRecognition();
 
-    if (!browserSupportsSpeechRecognition) {
-        return <span>Browser doesn't support speech recognition.</span>;
+    const saveTranscript = () => {
+        setTranscriptHistory(t => ([...t, transcript]));
+        resetTranscript();
     }
 
     const handleMic = () => {
         if(listening) {
             SpeechRecognition.stopListening();
+            saveTranscript();
         }
         else if(!listening) {
             SpeechRecognition.startListening({ continuous: true });
         }
     }
-    
+
     return (
     
         <div className='flex flex-col items-center justify-center '>
@@ -40,10 +48,21 @@ const SpeakButton = () => {
             <div className='flex flex-col w-[450px] h-[200px] p-5 bg-neutral-900 rounded-[20px] text-white text-2xl overflow-auto scrollbar-hide'>
                 {transcript}
             </div>
+
+            <hr className='w-[800px] border-t border-[#0086D1] mt-8' />
+
+            {transcriptHistory.length > 0 && (
+                <div>
+                    <h1 className='text-4xl font-bold bg-gradient-to-r from-[#0086D1] to-[#FF002B] bg-clip-text text-transparent'>Transcript History</h1>
+                    {transcriptHistory.map((text, index) => (
+                        <OldTranscript key={index} transcript={text} />
+                    ))}
+                </div>
+            )}
         </div>
     )
 
 }
 
-export default SpeakButton
+export default SpeakRecognition
 
