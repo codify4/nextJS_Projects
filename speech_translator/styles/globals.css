@@ -4,4 +4,24 @@
 
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
-  }
+}
+
+.animation-pulse {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 #FF002B;
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 60px #ff002b00;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
