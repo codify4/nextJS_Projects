@@ -10,9 +10,9 @@ import OldTranscript from './OldTranscript';
 import Button from './Button';
 
 const SpeakRecognition = () => {
-    const [transcriptValue, setTranscriptValue] = useLocalStorage('transcript');
 
-    const [transcriptHistory, setTranscriptHistory] = useState<string[]>([]);
+
+    const [transcriptHistory, setTranscriptHistory] = useLocalStorage('transcript', []);
     
     const {
         transcript,
@@ -24,8 +24,7 @@ const SpeakRecognition = () => {
     
 
     const saveTranscript = () => {
-        setTranscriptHistory(t => ([...t, transcript]));
-        setTranscriptValue(transcript);
+        setTranscriptHistory((t: string[]) => ([...t, transcript]));
     }
 
     const clearDialog = () => {
@@ -70,9 +69,9 @@ const SpeakRecognition = () => {
                     <hr className='w-[800px] border-t border-[#0086D1] mt-8' />
                     <h1 className='m-5 text-4xl font-bold bg-gradient-to-r from-[#0086D1] to-[#FF002B] bg-clip-text text-transparent'>Transcript History</h1>
 
-                    <div className='grid lg:grid-cols-3 gap-5 md:grid-cols-2 sm:grid-cols-1'>
+                    <div className='grid lg:grid-cols-3 gap-4 md:grid-cols-2 sm:grid-cols-1'>
                         
-                        {transcriptHistory.map((text, index) => (
+                        {transcriptHistory.map((text: string, index: number) => (
                             <OldTranscript key={index} transcript={text} />
                         ))}
                     </div>
