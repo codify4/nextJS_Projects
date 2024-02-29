@@ -1,18 +1,16 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
-
+import React, { useState } from 'react';
 import 'regenerator-runtime/runtime';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 import { Mic } from 'lucide-react';
-
 import OldTranscript from './OldTranscript';
+import Button from './Button';
 
 const SpeakRecognition = () => {
 
-    const [transcriptHistory, setTranscriptHistory] = useState(['']);
-    const [showTranscriptHistory, setShowTranscriptHistory] = useState(false);
+    const [transcriptHistory, setTranscriptHistory] = useState<string[]>([]);
     
     const {
         transcript,
@@ -23,6 +21,9 @@ const SpeakRecognition = () => {
 
     const saveTranscript = () => {
         setTranscriptHistory(t => ([...t, transcript]));
+    }
+
+    const clearDialog = () => {
         resetTranscript();
     }
 
@@ -45,19 +46,28 @@ const SpeakRecognition = () => {
                     <Mic />
             </button>
             
-            <div className='flex flex-col w-[450px] h-[200px] p-5 bg-neutral-900 rounded-[20px] text-white text-2xl overflow-auto scrollbar-hide'>
-                {transcript}
+            <div className='flex flex-col items-center w-[450px] h-[200px] p-5 bg-neutral-900 rounded-[20px] text-white text-2xl overflow-auto scrollbar-hide'>
+                <div className="flex-1 overflow-auto scrollbar-hide">{transcript}</div>
+                <div className="static mt-auto">
+                    <Button name='Clear' onClick={clearDialog}/>
+                </div>
             </div>
 
-            <hr className='w-[800px] border-t border-[#0086D1] mt-8' />
+            
 
-            {transcriptHistory.length > 0 && (
-                <div>
-                    <h1 className='text-4xl font-bold bg-gradient-to-r from-[#0086D1] to-[#FF002B] bg-clip-text text-transparent'>Transcript History</h1>
-                    {transcriptHistory.map((text, index) => (
-                        <OldTranscript key={index} transcript={text} />
-                    ))}
-                </div>
+            {transcriptHistory.length === 0 ? (
+                <></>
+            ):(
+                <div className='flex flex-col items-center'>
+
+                <hr className='w-[800px] border-t border-[#0086D1] mt-8' />
+                <h1 className='m-5 text-4xl font-bold bg-gradient-to-r from-[#0086D1] to-[#FF002B] bg-clip-text text-transparent'>Transcript History</h1>
+
+                {transcriptHistory.map((text, index) => (
+                    <OldTranscript key={index} transcript={text} />
+                ))}
+
+            </div>
             )}
         </div>
     )
