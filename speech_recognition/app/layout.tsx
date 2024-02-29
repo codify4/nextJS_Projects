@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className='flex flex-col items-center bg-[#1E1E1E]'>
+      <body className='flex flex-col items-center bg-[#1E1E1E] scrollbar-hide'>
           {children}
       </body>
     </html>

@@ -23,6 +23,11 @@ const SpeakRecognition = () => {
         setTranscriptHistory(t => ([...t, transcript]));
     }
 
+    const removeOldTranscript = (index: number) => {
+        setTranscriptHistory(transcriptHistory.filter((_,i) => i !== index))
+    }
+
+
     const clearDialog = () => {
         resetTranscript();
     }
@@ -49,25 +54,29 @@ const SpeakRecognition = () => {
             <div className='flex flex-col items-center w-[450px] h-[200px] p-5 bg-neutral-900 rounded-[20px] text-white text-2xl overflow-auto scrollbar-hide'>
                 <div className="flex-1 overflow-auto scrollbar-hide">{transcript}</div>
                 <div className="static mt-auto">
-                    <Button name='Clear' onClick={clearDialog}/>
+                    <Button 
+                        name='Clear' 
+                        size='w-[100px] h-[30px]'
+                        onClick={clearDialog}
+                    />
                 </div>
             </div>
-
-            
 
             {transcriptHistory.length === 0 ? (
                 <></>
             ):(
                 <div className='flex flex-col items-center'>
 
-                <hr className='w-[800px] border-t border-[#0086D1] mt-8' />
-                <h1 className='m-5 text-4xl font-bold bg-gradient-to-r from-[#0086D1] to-[#FF002B] bg-clip-text text-transparent'>Transcript History</h1>
+                    <hr className='w-[800px] border-t border-[#0086D1] mt-8' />
+                    <h1 className='m-5 text-4xl font-bold bg-gradient-to-r from-[#0086D1] to-[#FF002B] bg-clip-text text-transparent'>Transcript History</h1>
 
-                {transcriptHistory.map((text, index) => (
-                    <OldTranscript key={index} transcript={text} />
-                ))}
-
-            </div>
+                    <div className='grid lg:grid-cols-3 gap-5 md:grid-cols-2 sm:grid-cols-1'>
+                        
+                        {transcriptHistory.map((text, index) => (
+                            <OldTranscript key={index} transcript={text} />
+                        ))}
+                    </div>
+                </div>
             )}
         </div>
     )
