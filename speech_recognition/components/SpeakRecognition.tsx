@@ -3,12 +3,14 @@
 import React, { useState } from 'react';
 import 'regenerator-runtime/runtime';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import useLocalStorage from '@/lib/useLocalStorage';
 
 import { Mic } from 'lucide-react';
 import OldTranscript from './OldTranscript';
 import Button from './Button';
 
 const SpeakRecognition = () => {
+    const [transcriptValue, setTranscriptValue] = useLocalStorage('transcript');
 
     const [transcriptHistory, setTranscriptHistory] = useState<string[]>([]);
     
@@ -19,14 +21,12 @@ const SpeakRecognition = () => {
         browserSupportsSpeechRecognition
     } = useSpeechRecognition();
 
+    
+
     const saveTranscript = () => {
         setTranscriptHistory(t => ([...t, transcript]));
+        setTranscriptValue(transcript);
     }
-
-    const removeOldTranscript = (index: number) => {
-        setTranscriptHistory(transcriptHistory.filter((_,i) => i !== index))
-    }
-
 
     const clearDialog = () => {
         resetTranscript();
