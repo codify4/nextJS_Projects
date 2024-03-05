@@ -1,4 +1,5 @@
 import { type ClassValue, clsx } from "clsx"
+import exp from "constants";
 import { twMerge } from "tailwind-merge"
 
 
@@ -19,8 +20,36 @@ export const productContents = {
     "../public/bullseye.png",
     "../public/calendar.png"
   ],
-  header: [
-    ""
+  header: ["AI", "Docs", "Wikis", "Projects", "Calendar", "Template Galery", "Custom Stories", "Connections"],
+  desciption: [
+    "Integrated AI Assistant",
+    "Simple & Powerfull",
+    "Centralize your knowladge",
+    "For every team or size",
+    "Time and work, together",
+    "Setups to get you started",
+    "See how teams use Notion",
+    "Connect your tool to Notion"
+  ]
+}
+
+export const solutionsContents = {
+  titles: [
+    "BY TEAM SIZE",
+    "BY TEAM FUNCTION",
+    "NOTION FOR"
   ],
-  desciption: ""
+  icons: [
+    "../public/company.png",
+    "../public/building.png",
+    "../public/house.png"
+  ],
+  headers: [
+    "Enterprise", "Small businesses", "Personal", "Design", "Engineering", "Product", "Managers", "Startups", "Remote Work", "Education", "Nonprofits"
+  ],
+  descriptions: [
+    "Advanced features for your org",
+    "Run your team on one tool",
+    "Free for individuals"
+  ],
 }

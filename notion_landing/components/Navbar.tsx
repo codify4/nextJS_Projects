@@ -2,7 +2,6 @@ import Image from "next/image";
 import { MenubarComponent } from "./Menubars/Menubar";
 import { recourcesContents, downloadContents } from "../lib/utils";
 
-
 const Navbar = () => {
   return (
     <nav className="inline-flex">
