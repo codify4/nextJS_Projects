@@ -18,10 +18,7 @@ const SpeakRecognition = () => {
         transcript,
         listening,
         resetTranscript,
-        browserSupportsSpeechRecognition
     } = useSpeechRecognition();
-
-    
 
     const saveTranscript = () => {
         setTranscriptHistory((t: string[]) => ([...t, transcript]));
