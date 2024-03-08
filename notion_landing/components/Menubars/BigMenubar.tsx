@@ -13,6 +13,8 @@ import Image from "next/image";
 
 type MenubarProps = {
     title: string;
+    sliceNum1: number;
+    sliceNum2?: number;
     contents: {
       icons?: string[];
       headers: string[];
@@ -20,12 +22,12 @@ type MenubarProps = {
     }
 }
 
-export const BigMenubar = ({ title, contents }: MenubarProps) => {
+export const BigMenubar = ({ title, contents, sliceNum1, sliceNum2 }: MenubarProps) => {
   return (
     <Menubar className="my-4 border-none">
     <MenubarMenu>
         <MenubarTrigger className="text-[18px]">{title}</MenubarTrigger>
-        <MenubarContent className="inline-flex w-[450px]">
+        <MenubarContent className="inline-flex justify-center w-[455px]">
             <div className="w-[225px]">
               {contents.icons && contents.icons.map((icon, index) => (
                 <MenubarItem>
@@ -38,27 +40,37 @@ export const BigMenubar = ({ title, contents }: MenubarProps) => {
                         className="mr-[7px]"
                       />
                   )}
-                  
                   <div>
-                    <h3 className="text-base font-semibold">{contents.headers[index]}</h3>
+                    <h3 className="text-base font-medium">{contents.headers[index]}</h3>
                     <p>{contents.description[index]}</p>
                   </div>
                 </MenubarItem>
               ))}
             </div>
             
-            <Separator decorative orientation="vertical" className="w-1"/>
+            <Separator orientation="vertical"/>
 
             <div>
-              {contents.headers.slice(5).map((header, index) => (
-                <MenubarItem key={index} className="flex-col">
-                  <h3 className="text-base font-semibold">{header}</h3>
-                  <p>{contents.description[index + 5]}</p>
+              {contents.headers.slice(sliceNum1, sliceNum2).map((header, index) => (
+                <MenubarItem key={index}>
+                  <div className="justify-start">
+                    <h3 className="text-base font-medium">{header}</h3>
+                    <p>{contents.description[index + sliceNum1]}</p>
+                  </div>
                 </MenubarItem>
               ))}
             </div>
 
-
+            <div>
+              {contents.headers.slice(sliceNum2).map((header, index) => (
+                  <MenubarItem key={index}>
+                    <div className="justify-start">
+                      <h3 className="text-base font-medium">{header}</h3>
+                      <p>{contents.description[index + sliceNum1]}</p>
+                    </div>
+                  </MenubarItem>
+              ))}
+              </div>
         </MenubarContent>
     </MenubarMenu>
     </Menubar>

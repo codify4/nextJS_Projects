@@ -15,17 +15,30 @@ const Navbar = () => {
       />
 
       <BigMenubar 
-        title="Product" 
+        title="Product"
+        sliceNum1={5}
+        sliceNum2={13}
         contents={{
           icons: productContents.icons,
           headers: productContents.header,
           description: productContents.description
         }}
       />
-      <MenubarComponent title="Download" contents={downloadContents}/>
-      <MenubarComponent title="Recources" contents={recourcesContents}/>
 
-      
+      <MenubarComponent title="Download" contents={downloadContents}/>
+
+      <BigMenubar 
+        title="Product"
+        sliceNum1={3}
+        sliceNum2={7}
+        contents={{
+          icons: solutionsContents.icons,
+          headers: solutionsContents.headers,
+          description: solutionsContents.descriptions
+        }}
+      />
+
+      <MenubarComponent title="Recources" contents={recourcesContents}/>
     </nav>
   )
 }
