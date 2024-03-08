@@ -38,17 +38,25 @@ export const BigMenubar = ({ title, contents }: MenubarProps) => {
                         className="mr-[7px]"
                       />
                   )}
+                  
                   <div>
-                    <h3 className="text-base font-semibold">
-                      {contents.headers[index]}
-                    </h3>
+                    <h3 className="text-base font-semibold">{contents.headers[index]}</h3>
                     <p>{contents.description[index]}</p>
                   </div>
                 </MenubarItem>
               ))}
             </div>
             
-            <Separator orientation="vertical" className="bg-black w-1"/>
+            <Separator decorative orientation="vertical" className="w-1"/>
+
+            <div>
+              {contents.headers.slice(5).map((header, index) => (
+                <MenubarItem key={index} className="flex-col">
+                  <h3 className="text-base font-semibold">{header}</h3>
+                  <p>{contents.description[index + 5]}</p>
+                </MenubarItem>
+              ))}
+            </div>
 
 
         </MenubarContent>
