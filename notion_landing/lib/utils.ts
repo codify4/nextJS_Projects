@@ -14,14 +14,14 @@ export const downloadContents = ["Notion", "Calendar", "Web Clipper"];
 
 export const productContents = {
   icons: [
-    "../public/starts.png", 
-    "../public/docs.png",
-    "../public/book.png",
-    "../public/bullseye.png",
-    "../public/calendar.png"
+    "/stars.png", 
+    "/docs.png",
+    "/book.png",
+    "/bullseye.png",
+    "/calendar.png"
   ],
   header: ["AI", "Docs", "Wikis", "Projects", "Calendar", "Template Galery", "Custom Stories", "Connections"],
-  desciption: [
+  description: [
     "Integrated AI Assistant",
     "Simple & Powerfull",
     "Centralize your knowladge",
@@ -40,9 +40,9 @@ export const solutionsContents = {
     "NOTION FOR"
   ],
   icons: [
-    "../public/company.png",
-    "../public/building.png",
-    "../public/house.png"
+    "/company.png",
+    "/building.png",
+    "/house.png"
   ],
   headers: [
     "Enterprise", "Small businesses", "Personal", "Design", "Engineering", "Product", "Managers", "Startups", "Remote Work", "Education", "Nonprofits"
