@@ -1,7 +1,12 @@
 import Image from "next/image";
+
 import { MenubarComponent } from "./Menubars/Menubar";
-import { recourcesContents, downloadContents, productContents, solutionsContents } from "../lib/utils";
 import { BigMenubar } from "./Menubars/BigMenubar";
+import Button from "./Button";
+
+import { recourcesContents, downloadContents, productContents, solutionsContents } from "../lib/utils";
+
+
 
 const Navbar = () => {
   return (
@@ -39,6 +44,12 @@ const Navbar = () => {
       />
 
       <MenubarComponent title="Recources" contents={recourcesContents}/>
+
+      <div>
+        <Button title="Request a demo" variant="ghost"/>
+        <Button title="Log in" variant="ghost"/>
+        <Button title="Get Notion free"/>
+      </div>
     </nav>
   )
 }
