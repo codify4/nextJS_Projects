@@ -20,7 +20,7 @@ export const MenubarComponent = ({ title, contents }: MenubarProps) => {
         <MenubarTrigger className="text-[18px]">{title}</MenubarTrigger>
         <MenubarContent>
             {contents.map((content) => (
-                <MenubarItem>{content}</MenubarItem>
+                <MenubarItem className="text-[15px]">{content}</MenubarItem>
             ))}
         </MenubarContent>
     </MenubarMenu>
