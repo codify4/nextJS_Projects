@@ -4,7 +4,7 @@ import { MenubarComponent } from "./Menubars/Menubar";
 import { BigMenubar } from "./Menubars/BigMenubar";
 
 import { recourcesContents, downloadContents, productContents, solutionsContents } from "../lib/utils";
-import Buton from "./Buton";
+import { Button } from "./ui/button";
 
 const Navbar = () => {
   return (
@@ -47,9 +47,9 @@ const Navbar = () => {
         </div>
 
         <div className="inline-flex ml-[950px] mt-[15px]">
-          <Buton title="Request a demo" variant="ghost"/>
-          <Buton title="Log in" variant="ghost"/>
-          <Buton title="Get Notion free"/>
+          <Button variant="ghost" className="text-[16px]">Request a demo</Button>
+          <Button variant="ghost" className="text-[16px]">Log in</Button>
+          <Button className="text-[16px]">Get Notion free</Button>
         </div>
       </div>
     </nav>

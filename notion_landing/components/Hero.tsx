@@ -1,4 +1,4 @@
-import Buton from "./Buton"
+import { Button } from "./ui/button";
 
 const Hero = () => {
   return (
@@ -12,8 +12,8 @@ const Hero = () => {
       <h2 className='mt-4 text-[23px] font-semibold'>Notion is the connected workspace where better, faster work happens.</h2>
 
       <div className="mt-5">
-        <Buton title="Get Notion free →"/>
-        <Buton title="Request a demo →" variant="link"/>
+        <Button className="text-[16px]">Get Notion free →</Button>
+        <Button className="text-[16px] text-blue-600 hover:text-blue-700" variant="link">Request a demo →</Button>
       </div>
     </section>
   )
