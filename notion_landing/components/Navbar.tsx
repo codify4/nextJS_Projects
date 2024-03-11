@@ -44,6 +44,8 @@ const Navbar = () => {
           />
 
           <MenubarComponent title="Recources" contents={recourcesContents}/>
+
+          <Button variant="ghost" className="text-black">Pricing</Button>
         </div>
 
         <div className="inline-flex ml-[950px] mt-[15px]">
